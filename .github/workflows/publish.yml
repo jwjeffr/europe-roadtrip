@@ -23,7 +23,7 @@ jobs:
       - name: Install dependencies
         run: >-
           pip install geopy==2.4.1 folium==0.19.5
-      - name: Build pdoc documentation
+      - name: Build map
         run: >-
           python make-map.py
       - name: Upload artifact
@@ -48,7 +48,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Download docs artifact
+      - name: Download map artifact
         uses: actions/download-artifact@v4
         with:
           name: github-pages

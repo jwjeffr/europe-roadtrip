@@ -1,15 +1,23 @@
+import json
+from pathlib import Path
+
 import folium
 from geopy.geocoders import Nominatim
 
 
-# Function to get the coordinates of a location
+with Path("coordinates.json").open("r") as file:
+
+    COORDINATES = json.load(file)
+
+
 def get_coordinates(location):
-    geolocator = Nominatim(user_agent="roadtrip_planner")
-    if loc := geolocator.geocode(location):
-        return loc.latitude, loc.longitude
-    else:
-        print(f"Location '{location}' not found.")
-        return None
+    try:
+        return COORDINATES[location]
+    except KeyError:
+        geolocator = Nominatim(user_agent="roadtrip_planner")
+        if loc := geolocator.geocode(location):
+            return loc.latitude, loc.longitude
+        raise ValueError("location not found in db nor found by geopy")
 
 
 # Function to create the map and plot routes
