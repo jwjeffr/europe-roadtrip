@@ -25,12 +25,12 @@ jobs:
           pip install geopy==2.4.1 folium==0.19.5
       - name: Build map
         run: >-
-          python make-map.py
+          mkdir map; python make-map.py
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           name: github-pages
-          path: index.html
+          path: map/
 
   deploy-map:
     needs:
@@ -52,7 +52,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: github-pages
-          path: index.html
+          path: map/
 
       - name: Deploy to GitHub Pages
         id: deployment

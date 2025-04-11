@@ -50,8 +50,8 @@ def plot_trip(destinations, routes):
             folium.PolyLine([start_coords, end_coords], color=color, weight=3, opacity=0.7).add_to(trip_map)
 
     # Save the map to an HTML file
-    trip_map.save("index.html")
-    print("Map saved as 'index.html'.")
+    trip_map.save("map/index.html")
+    print("Map saved as 'map/index.html'.")
 
 
 def main():
